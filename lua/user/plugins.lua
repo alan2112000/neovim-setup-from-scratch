@@ -45,13 +45,26 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use {
+    "numToStr/Comment.nvim", -- Easily comment stuff
+    tag = "v0.6",
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
+  use {
+    "akinsho/bufferline.nvim",
+    branch = "main"
+  }
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
+  use {
+    "akinsho/toggleterm.nvim",
+    branch = "main"
+  }
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
   use "lukas-reineke/indent-blankline.nvim"
@@ -69,20 +82,30 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
+  use {
+    "hrsh7th/cmp-nvim-lsp",
+    branch = "main"
+  }
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use "SirVer/ultisnips"
+  use "honza/vim-snippets"
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use 'glepnir/lspsaga.nvim' -- for floating window
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = "nvim-0.6",
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 
   -- Treesitter
   use {
@@ -92,7 +115,29 @@ return packer.startup(function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  use "lewis6991/gitsigns.nvim" -- light version of git only implement line blame preview and hunk preview also
+  use "tpope/vim-fugitive"
+
+  -- Navigation
+  use "christoomey/vim-tmux-navigator"
+
+  use 'tpope/vim-surround' -- "Change suround tag and content
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

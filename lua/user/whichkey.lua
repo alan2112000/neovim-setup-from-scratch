@@ -158,6 +158,12 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
+    g = {
+      name = 'function check',
+      d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to definition"},
+      r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Show References"},
+      h = {"<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "Find cursor definition use LSP saga" }
+    },
   },
   s = {
     name = "Search",

@@ -6,3 +6,8 @@ end
 require "user.lsp.lsp-installer"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"
+require'lspconfig'.solargraph.setup {
+  flags = {
+    debounce_text_changes = 500,
+  }
+}
