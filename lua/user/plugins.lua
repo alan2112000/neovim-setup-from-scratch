@@ -93,9 +93,11 @@ return packer.startup(function(use)
   use "SirVer/ultisnips"
   use "honza/vim-snippets"
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use {
+      'neovim/nvim-lspconfig',
+      'williamboman/nvim-lsp-installer',
+  }
+
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use 'glepnir/lspsaga.nvim' -- for floating window
@@ -135,9 +137,7 @@ return packer.startup(function(use)
     end
   }
 
-   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-
-
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
